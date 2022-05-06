@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.controlsfx.dialog.WizardPane?>
+<?import impl.org.controlsfx.skin.DecorationPane?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" fx:controller="com.example.moduleequalitiesgenerator.MainController">
+    <VBox prefWidth="800" prefHeight="600">
+
+        <MenuBar prefWidth="800">
+            <Menu text="button1">
+                <MenuItem text="item1"/>
+                <MenuItem text="item2"/>
+            </Menu>
+            <Menu text="button2">
+                <MenuItem text="item1"/>
+                <MenuItem text="item2"/>
+            </Menu>
+        </MenuBar>
+
+        <HBox prefWidth="750" alignment="CENTER">
+            <Label alignment="CENTER" text="Equalities type"/>
+        </HBox>
+
+        <HBox alignment="CENTER">
+            <BorderPane prefWidth="750" maxWidth="750">
+                <left>
+                    <VBox>
+                        <CheckBox fx:id="checkBox1" text="checkbox1"/>
+                        <CheckBox fx:id="checkBox2" text="checkbox2"/>
+                        <CheckBox fx:id="checkBox3" text="checkbox3"/>
+                    </VBox>
+                </left>
+                <right>
+                    <VBox alignment="TOP_RIGHT">
+                        <Label fx:id="label1"/>
+                        <Label fx:id="label2"/>
+                        <Label fx:id="label3"/>
+                    </VBox>
+                </right>
+            </BorderPane>
+        </HBox>
+
+        <Button text="Check" onAction="#onButtonClick"/>
+    </VBox>
+</AnchorPane>
