@@ -1,38 +1,60 @@
 package com.example.moduleequalitiesgenerator;
 
+import eu.hansolo.tilesfx.tools.TimeData;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import java.util.Date;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class MainController {
-    public CheckBox checkBox1;
-    public CheckBox checkBox2;
-    public CheckBox checkBox3;
-    public Label label1;
-    public Label label2;
-    public Label label3;
+    public TextField seedField;
+
+    public ChoiceBox eqTypeChoiceBox;
+
+    public String eqTypeChoice1;
+    public String eqTypeChoice2;
+    public String eqTypeChoice3;
+    public String eqTypeChoice4;
+    public String eqTypeChoice5;
+    public String eqTypeChoice6;
+
+    public Label label;
 
     @FXML
     protected void onButtonClick() {
-        if(checkBox1.isSelected())
-            label1.setText("CheckBox1 is selected");
-        else
-            label1.setText("CheckBox1 is not selected");
+        label.setText("Created equality with type " + eqTypeChoiceBox.getValue());
 
-        if(checkBox2.isSelected())
-            label2.setText("CheckBox2 is selected");
-        else
-            label2.setText("CheckBox2 is not selected");
+        Random rand;
+        long trueSeed = 0;
 
-        if(checkBox3.isSelected())
-            label3.setText("CheckBox3 is selected");
-        else
-            label3.setText("CheckBox3 is not selected");
+        if (seedField.getCharacters().length() == 0){
+            trueSeed = new Date().getTime();
+        } else {
+            long mult = seedField.getCharacters().toString().length() - 1;
+            for (char c : seedField.getCharacters().toString().toCharArray()){
+                long add = c - 48;
 
+                for(int i = 0; i < mult; i++){
+                    add *= 10;
+                }
+
+                mult--;
+                trueSeed += add;
+            }
+        }
+
+        System.out.println(trueSeed);
+        rand = new Random(trueSeed);
     }
 
     public void initialize(){
-        System.out.print("Initialized!\n");
+        System.out.println("Initialized!\n");
 
     }
 }

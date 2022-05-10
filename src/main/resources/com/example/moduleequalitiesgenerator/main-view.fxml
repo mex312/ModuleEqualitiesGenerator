@@ -8,43 +8,37 @@
 <?import impl.org.controlsfx.skin.DecorationPane?>
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import com.sun.javafx.webkit.theme.RenderThemeImpl.FormCheckBox?>
+<?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" fx:controller="com.example.moduleequalitiesgenerator.MainController">
     <VBox prefWidth="800" prefHeight="600">
-
-        <MenuBar prefWidth="800">
-            <Menu text="button1">
-                <MenuItem text="item1"/>
-                <MenuItem text="item2"/>
-            </Menu>
-            <Menu text="button2">
-                <MenuItem text="item1"/>
-                <MenuItem text="item2"/>
-            </Menu>
-        </MenuBar>
-
-        <HBox prefWidth="750" alignment="CENTER">
-            <Label alignment="CENTER" text="Equalities type"/>
-        </HBox>
-
         <HBox alignment="CENTER">
-            <BorderPane prefWidth="750" maxWidth="750">
+            <BorderPane prefWidth="400" maxWidth="400">
                 <left>
-                    <VBox>
-                        <CheckBox fx:id="checkBox1" text="checkbox1"/>
-                        <CheckBox fx:id="checkBox2" text="checkbox2"/>
-                        <CheckBox fx:id="checkBox3" text="checkbox3"/>
+                    <VBox alignment="CENTER">
+                        <Label alignment="CENTER" text="Equality type"/>
+                        <ChoiceBox fx:id="eqTypeChoiceBox" prefWidth="300" prefHeight="50" value="Random">
+                            <String fx:value="1" fx:id="eqTypeChoice1"/>
+                            <String fx:value="2" fx:id="eqTypeChoice2"/>
+                            <String fx:value="3" fx:id="eqTypeChoice3"/>
+                            <String fx:value="4" fx:id="eqTypeChoice4"/>
+                            <String fx:value="5" fx:id="eqTypeChoice5"/>
+                            <String fx:value="Random" fx:id="eqTypeChoice6"/>
+                        </ChoiceBox>
                     </VBox>
                 </left>
                 <right>
-                    <VBox alignment="TOP_RIGHT">
-                        <Label fx:id="label1"/>
-                        <Label fx:id="label2"/>
-                        <Label fx:id="label3"/>
+                    <VBox maxWidth="350" prefWidth="350" alignment="TOP_RIGHT">
+                        <Label/>
+                        <TextField fx:id="seedField" maxWidth="300"/>
+                        <Text text="Seed for generating equalities goes here. Leave empty to use random seed." wrappingWidth="300"/>
                     </VBox>
                 </right>
             </BorderPane>
         </HBox>
 
         <Button text="Check" onAction="#onButtonClick"/>
+        <Label fx:id="label" text="No equality"/>
     </VBox>
 </AnchorPane>
