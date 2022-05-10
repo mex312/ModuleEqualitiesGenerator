@@ -24,17 +24,17 @@ public class MainController {
     public String eqTypeChoice5;
     public String eqTypeChoice6;
 
-    public Label label;
+    public Label eqLabel;
+    public Label eqAnsLabel;
 
-    @FXML
-    protected void onButtonClick() {
-        label.setText("Created equality with type " + eqTypeChoiceBox.getValue());
+    ModuleEquality activeEq;
 
+    public void GenerateEq() {
         Random rand;
         long trueSeed = 0;
 
         if (seedField.getCharacters().length() == 0){
-            trueSeed = new Date().getTime();
+            trueSeed = new Random(new Date().getTime()).nextLong();
         } else {
             long mult = seedField.getCharacters().toString().length() - 1;
             for (char c : seedField.getCharacters().toString().toCharArray()){
@@ -51,6 +51,18 @@ public class MainController {
 
         System.out.println(trueSeed);
         rand = new Random(trueSeed);
+
+        if(eqTypeChoiceBox.getValue() == eqTypeChoice6) {
+            activeEq = new ModuleEquality(rand, 0);
+        }else{
+            activeEq = new ModuleEquality(rand, Integer.parseInt(eqTypeChoiceBox.getValue().toString()));
+        }
+
+        eqLabel.setText(activeEq.AsString());
+    }
+
+    public void GenerateAns(){
+        if(activeEq != null) eqAnsLabel.setText(activeEq.AnswerAsString());
     }
 
     public void initialize(){
