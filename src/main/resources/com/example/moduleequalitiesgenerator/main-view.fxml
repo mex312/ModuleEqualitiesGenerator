@@ -62,9 +62,16 @@
             </BorderPane>
         </VBox>
 
-        <HBox>
-
-
+        <Label/>
+        <Label/>
+        <Label/>
+        <Label/>
+        <HBox alignment="CENTER" prefWidth="800" maxWidth="800" minWidth="800">
+            <VBox prefWidth="750" minWidth="750" maxWidth="750">
+                <Label text="Used seed:"/>
+                <TextField minWidth="300" maxWidth="300" prefWidth="300" fx:id="usedSeedField"/>
+            </VBox>
         </HBox>
+
     </VBox>
 </AnchorPane>

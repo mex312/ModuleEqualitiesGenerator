@@ -14,6 +14,7 @@ import java.util.random.RandomGenerator;
 
 public class MainController {
     public TextField seedField;
+    public TextField usedSeedField;
 
     public ChoiceBox eqTypeChoiceBox;
 
@@ -32,6 +33,7 @@ public class MainController {
     public void GenerateEq() {
         Random rand;
         long trueSeed = 0;
+        int seedMult = 1;
 
         if (seedField.getCharacters().length() == 0){
             trueSeed = new Random(new Date().getTime()).nextLong();
@@ -40,8 +42,13 @@ public class MainController {
             for (char c : seedField.getCharacters().toString().toCharArray()){
                 long add = c - 48;
 
-                for(int i = 0; i < mult; i++){
-                    add *= 10;
+                if(c == '-') {
+                    add = 0;
+                    seedMult *= -1;
+                }else{
+                    for (int i = 0; i < mult; i++) {
+                        add *= 10;
+                    }
                 }
 
                 mult--;
@@ -49,7 +56,7 @@ public class MainController {
             }
         }
 
-        System.out.println(trueSeed);
+        trueSeed *= seedMult;
         rand = new Random(trueSeed);
 
         if(eqTypeChoiceBox.getValue() == eqTypeChoice6) {
@@ -59,6 +66,7 @@ public class MainController {
         }
 
         eqLabel.setText(activeEq.AsString());
+        usedSeedField.setText(String.valueOf(trueSeed));
     }
 
     public void GenerateAns(){
