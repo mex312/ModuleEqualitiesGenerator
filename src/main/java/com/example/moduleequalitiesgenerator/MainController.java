@@ -65,6 +65,7 @@ public class MainController {
             activeEq = new ModuleEquality(rand, Integer.parseInt(eqTypeChoiceBox.getValue().toString()));
         }
 
+        eqAnsLabel.setText("Closed");
         eqLabel.setText(activeEq.AsString());
         usedSeedField.setText(String.valueOf(trueSeed));
     }

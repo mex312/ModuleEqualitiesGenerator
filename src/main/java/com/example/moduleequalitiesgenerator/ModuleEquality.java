@@ -3,6 +3,8 @@ package com.example.moduleequalitiesgenerator;
 import java.util.Random;
 
 public class ModuleEquality {
+    private static final String NO_ROOTS_MESSAGE = "No Roots";
+
     private final long a;
     private final long ax;
     private final long b;
@@ -97,6 +99,87 @@ public class ModuleEquality {
     }
 
     public String AnswerAsString(){
-        return "ANSWER";
+        String out = "";
+        switch (type){
+            case(1):
+                double sqA = ax*bx;
+                double sqB = ax*b + bx*a;
+                double sqC = a*b;
+                double D = sqB*sqB - 4*sqA*sqC;
+                System.out.print(sqA);
+                System.out.print(' ');
+                System.out.print(sqB);
+                System.out.print(' ');
+                System.out.print(sqC);
+                System.out.print(' ');
+                System.out.println(D);
+                if (D < 0){
+                    if(sqA > 0) {
+                        out = "x = R";
+                    } else {
+                        out = NO_ROOTS_MESSAGE;
+                    }
+                } else if (D == 0){
+                    double x = (-sqB + Math.sqrt(D)) / (2*sqA);
+
+                    if(sqA < 0){
+                        out = "x = %f".formatted(x);
+                    } else {
+                        out = "x = R";
+                    }
+                } else {
+                    double x1 = (-sqB + Math.sqrt(D)) / (2*sqA);
+                    double x2 = (-sqB - Math.sqrt(D)) / (2*sqA);
+
+                    if(sqA > 0){
+                        out = "[ x <= %f\n[ x >= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    } else {
+                        out = "[ x >= %f\n[ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    }
+                }
+                break;
+            case(2):
+
+                break;
+            case(3):
+                if (ax > 0 && bx > 0) {
+                    double x1 = -(double)a / ax;
+                    double x2 = -(double)b / bx;
+                    if (x1 > x2) out = "x >= %f".formatted(x1);
+                    else out = "x >= %f".formatted(x2);
+                } else if (ax < 0 && bx < 0) {
+                    double x1 = -(double)a / ax;
+                    double x2 = -(double)b / bx;
+                    if (x1 < x2) out = "x <= %f".formatted(x1);
+                    else out = "x <= %f".formatted(x2);
+                } else {
+                    double negX;
+                    double posX;
+                    if(ax < 0){
+                        negX = -(double)a / ax;
+                        posX = -(double)b / bx;
+                    } else{
+                        posX = -(double)a / ax;
+                        negX = -(double)b / bx;
+                    }
+
+                    if(posX < negX){
+                        out = "{ x >= %f\n{ x <= %f".formatted(posX, negX);
+                    } else if(posX == negX) {
+                        out = "x = %f".formatted(posX);
+                    } else {
+                        out = NO_ROOTS_MESSAGE;
+                    }
+                }
+                break;
+            case(4):
+
+                break;
+            case(5):
+
+                break;
+
+        }
+        return out;
     }
 }
