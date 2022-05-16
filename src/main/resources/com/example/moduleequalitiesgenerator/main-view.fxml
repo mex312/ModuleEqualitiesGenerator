@@ -17,14 +17,14 @@
             <BorderPane prefWidth="400" maxWidth="400">
                 <left>
                     <VBox alignment="CENTER">
-                        <Label alignment="CENTER" text="Equality type"/>
-                        <ChoiceBox fx:id="eqTypeChoiceBox" prefWidth="300" prefHeight="50" value="Random">
+                        <Label alignment="CENTER" text="Тип Уравнения"/>
+                        <ChoiceBox fx:id="eqTypeChoiceBox" prefWidth="300" prefHeight="50" value="Случайно">
                             <String fx:value="1" fx:id="eqTypeChoice1"/>
                             <String fx:value="2" fx:id="eqTypeChoice2"/>
                             <String fx:value="3" fx:id="eqTypeChoice3"/>
                             <String fx:value="4" fx:id="eqTypeChoice4"/>
                             <String fx:value="5" fx:id="eqTypeChoice5"/>
-                            <String fx:value="Random" fx:id="eqTypeChoice6"/>
+                            <String fx:value="Случайно" fx:id="eqTypeChoice6"/>
                         </ChoiceBox>
                     </VBox>
                 </left>
@@ -32,7 +32,7 @@
                     <VBox maxWidth="350" prefWidth="350" alignment="TOP_RIGHT">
                         <Label/>
                         <TextField fx:id="seedField" maxWidth="300"/>
-                        <Text text="Seed for generating equalities goes here. Leave empty to use random seed." wrappingWidth="300"/>
+                        <Text text="Сид для генерации уравнений. Оставте пустым для использования случайного сида." wrappingWidth="300"/>
                     </VBox>
                 </right>
             </BorderPane>
@@ -44,20 +44,20 @@
         <VBox prefWidth="800" alignment="CENTER">
             <BorderPane prefWidth="750" maxWidth="750">
                 <left>
-                    <Button text="Generate equality" onAction="#GenerateEq"/>
+                    <Button text="Сгенерировать уравнение" onAction="#GenerateEq"/>
                 </left>
                 <right>
-                    <Label fx:id="eqLabel" text="No equality" alignment="TOP_RIGHT"/>
+                    <Label fx:id="eqLabel" text="Уравнение не сгенерировано" alignment="TOP_RIGHT"/>
                 </right>
             </BorderPane>
             <Label/>
             <Label/>
             <BorderPane prefWidth="750" maxWidth="750">
                 <left>
-                    <Button text="Get Answer" onAction="#GenerateAns"/>
+                    <Button text="Получить ответ" onAction="#GenerateAns"/>
                 </left>
                 <right>
-                    <Label fx:id="eqAnsLabel" text="No equality" alignment="TOP_RIGHT"/>
+                    <Label fx:id="eqAnsLabel" text="Уравнение не сгенерировано" alignment="TOP_RIGHT"/>
                 </right>
             </BorderPane>
         </VBox>
@@ -68,7 +68,7 @@
         <Label/>
         <HBox alignment="CENTER" prefWidth="800" maxWidth="800" minWidth="800">
             <VBox prefWidth="750" minWidth="750" maxWidth="750">
-                <Label text="Used seed:"/>
+                <Label text="Использованный сид:"/>
                 <TextField minWidth="300" maxWidth="300" prefWidth="300" fx:id="usedSeedField"/>
             </VBox>
         </HBox>

@@ -3,7 +3,7 @@ package com.example.moduleequalitiesgenerator;
 import java.util.Random;
 
 public class ModuleEquality {
-    private static final String NO_ROOTS_MESSAGE = "No Roots";
+    private static final String NO_ROOTS_MESSAGE = "Корней нет ";
 
     private final long a;
     private final long ax;
@@ -44,8 +44,8 @@ public class ModuleEquality {
                 break;
             case (2):
                 out += "|%dx ".formatted(ax - bx);
-                if(a - b < 0) out += "+ %d| = ".formatted(-(a - b));
-                else out += "- %d| = ".formatted(a - b);
+                if(a - b < 0) out += "- %d| = ".formatted(-(a - b));
+                else out += "+ %d| = ".formatted(a - b);
 
                 out += "|%dx ".formatted(ax);
                 if(a < 0) out += "- %d| + ".formatted(-a);
@@ -100,19 +100,16 @@ public class ModuleEquality {
 
     public String AnswerAsString(){
         String out = "";
+        double sqA;
+        double sqB;
+        double sqC;
+        double D;
         switch (type){
             case(1):
-                double sqA = ax*bx;
-                double sqB = ax*b + bx*a;
-                double sqC = a*b;
-                double D = sqB*sqB - 4*sqA*sqC;
-                System.out.print(sqA);
-                System.out.print(' ');
-                System.out.print(sqB);
-                System.out.print(' ');
-                System.out.print(sqC);
-                System.out.print(' ');
-                System.out.println(D);
+                sqA = ax*bx;
+                sqB = ax*b + bx*a;
+                sqC = a*b;
+                D = sqB*sqB - 4*sqA*sqC;
                 if (D < 0){
                     if(sqA > 0) {
                         out = "x = R";
@@ -134,12 +131,39 @@ public class ModuleEquality {
                     if(sqA > 0){
                         out = "[ x <= %f\n[ x >= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
                     } else {
-                        out = "[ x >= %f\n[ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                        out = "{ x >= %f\n{ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
                     }
                 }
                 break;
             case(2):
+                sqA = ax*bx;
+                sqB = ax*b + bx*a;
+                sqC = a*b;
+                D = sqB*sqB - 4*sqA*sqC;
+                if (D < 0){
+                    if(sqA < 0) {
+                        out = "x = R";
+                    } else {
+                        out = NO_ROOTS_MESSAGE;
+                    }
+                } else if (D == 0){
+                    double x = (-sqB + Math.sqrt(D)) / (2*sqA);
 
+                    if(sqA > 0){
+                        out = "x = %f".formatted(x);
+                    } else {
+                        out = "x = R";
+                    }
+                } else {
+                    double x1 = (-sqB + Math.sqrt(D)) / (2*sqA);
+                    double x2 = (-sqB - Math.sqrt(D)) / (2*sqA);
+
+                    if(sqA < 0){
+                        out = "[ x <= %f\n[ x >= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    } else {
+                        out = "{ x >= %f\n{ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    }
+                }
                 break;
             case(3):
                 if (ax > 0 && bx > 0) {
@@ -173,12 +197,65 @@ public class ModuleEquality {
                 }
                 break;
             case(4):
+                sqA = bx*(ax-bx);
+                sqB = bx*(a-b) + (ax-bx)*b;
+                sqC = b*(a-b);
+                D = sqB*sqB - 4*sqA*sqC;
+                if (D < 0){
+                    if(sqA > 0) {
+                        out = "x = R";
+                    } else {
+                        out = NO_ROOTS_MESSAGE;
+                    }
+                } else if (D == 0){
+                    double x = (-sqB + Math.sqrt(D)) / (2*sqA);
 
+                    if(sqA < 0){
+                        out = "x = %f".formatted(x);
+                    } else {
+                        out = "x = R";
+                    }
+                } else {
+                    double x1 = (-sqB + Math.sqrt(D)) / (2*sqA);
+                    double x2 = (-sqB - Math.sqrt(D)) / (2*sqA);
+
+                    if(sqA > 0){
+                        out = "[ x <= %f\n[ x >= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    } else {
+                        out = "{ x >= %f\n{ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    }
+                }
                 break;
             case(5):
+                sqA = bx*(ax+bx);
+                sqB = bx*(a+b) + (ax+bx)*b;
+                sqC = b*(a+b);
+                D = sqB*sqB - 4*sqA*sqC;
+                if (D < 0){
+                    if(sqA < 0) {
+                        out = "x = R";
+                    } else {
+                        out = NO_ROOTS_MESSAGE;
+                    }
+                } else if (D == 0){
+                    double x = (-sqB + Math.sqrt(D)) / (2*sqA);
 
+                    if(sqA > 0){
+                        out = "x = %f".formatted(x);
+                    } else {
+                        out = "x = R";
+                    }
+                } else {
+                    double x1 = (-sqB + Math.sqrt(D)) / (2*sqA);
+                    double x2 = (-sqB - Math.sqrt(D)) / (2*sqA);
+
+                    if(sqA < 0){
+                        out = "[ x <= %f\n[ x >= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    } else {
+                        out = "{ x >= %f\n{ x <= %f".formatted(Math.min(x1, x2), Math.max(x1, x2));
+                    }
+                }
                 break;
-
         }
         return out;
     }

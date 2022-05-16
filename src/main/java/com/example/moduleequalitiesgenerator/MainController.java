@@ -13,6 +13,8 @@ import java.util.Random;
 import java.util.random.RandomGenerator;
 
 public class MainController {
+    public static final String CLOSED_MESSAGE = "Ответ скрыт ";
+
     public TextField seedField;
     public TextField usedSeedField;
 
@@ -65,7 +67,7 @@ public class MainController {
             activeEq = new ModuleEquality(rand, Integer.parseInt(eqTypeChoiceBox.getValue().toString()));
         }
 
-        eqAnsLabel.setText("Closed");
+        eqAnsLabel.setText(CLOSED_MESSAGE);
         eqLabel.setText(activeEq.AsString());
         usedSeedField.setText(String.valueOf(trueSeed));
     }
